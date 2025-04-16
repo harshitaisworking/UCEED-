@@ -1,42 +1,52 @@
-import { useState } from "react"; import { Card, CardContent } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { Input } from "@/components/ui/input"; import { motion } from "framer-motion";
 
-const links = [ { title: "Inspiration Board", url: "https://www.pinterest.com", cover: "https://source.unsplash.com/400x300/?aesthetic,blue" }, { title: "Design Resources", url: "https://www.figma.com", cover: "https://source.unsplash.com/400x300/?design,ui" } ];
+import { useState } from "react"; 
+import { Card, CardContent } from "@/components/ui/card"; 
+import { Button } from "@/components/ui/button"; 
+import { Input } from "@/components/ui/input"; 
+import { motion } from "framer-motion";
 
-export default function HomePage() { const [files, setFiles] = useState([]);
+const links = [ 
+  { 
+    title: "Inspiration Board", 
+    url: "https://www.pinterest.com", 
+    cover: "https://source.unsplash.com/400x300/?aesthetic,blue" 
+  }, 
+  { 
+    title: "Design Resources", 
+    url: "https://www.figma.com", 
+    cover: "https://source.unsplash.com/400x300/?design,ui" 
+  } 
+];
 
-const handleFileUpload = (e) => { const uploadedFiles = Array.from(e.target.files); setFiles((prev) => [...prev, ...uploadedFiles]); };
+export default function HomePage() { 
+  const [files, setFiles] = useState([]);
 
-return ( <div className="min-h-screen bg-gradient-to-br from-mint-100 to-blue-100 p-6 text-gray-800"> <h1 className="text-4xl font-bold text-center mb-8">Harshita's Hub</h1>
+  const handleFileUpload = (e) => { 
+    const uploadedFiles = Array.from(e.target.files); 
+    setFiles((prev) => [...prev, ...uploadedFiles]); 
+  };
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-    {links.map((link, index) => (
-      <motion.a
-        key={index}
-        href={link.url}
-        target="_blank"
-        whileHover={{ scale: 1.02 }}
-        className="rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition"
-      >
-        <Card className="bg-white">
-          <img src={link.cover} alt="cover" className="w-full h-48 object-cover" />
-          <CardContent className="p-4">
-            <h2 className="text-xl font-semibold">{link.title}</h2>
-          </CardContent>
-        </Card>
-      </motion.a>
-    ))}
-  </div>
+  return ( 
+    <div>
+      <h1 className="text-3xl font-semibold mb-8">Harshita's Hub</h1>
 
-  <div className="bg-white rounded-2xl shadow-lg p-6">
-    <h2 className="text-2xl font-semibold mb-4">Upload Files</h2>
-    <Input type="file" multiple onChange={handleFileUpload} className="mb-4" />
-    <ul className="list-disc pl-5">
-      {files.map((file, index) => (
-        <li key={index}>{file.name}</li>
-      ))}
-    </ul>
-  </div>
-</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        {links.map((link, index) => (
+          <motion.a 
+            key={index} 
+            href={link.url} 
+            target="_blank" 
+            whileHover={{ scale: 1.02 }} 
+            className="rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition"
+          >
+            <Card className="bg-white">
+              <img src={link.cover} alt="cover" className="w-full h-48 object-cover" />
+              <CardContent className="p-4">
+                <h2 className="text-xl font-semibold">{link.title}</h2>
+              </CardContent>
+            </Card>
+          </motion.a>
+        ))}
+      </div>
 
-); }
-
+      <div className
